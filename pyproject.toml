@@ -1,0 +1,28 @@
+[project]
+name = "ml-pipeline-1"
+version = "0.1.0"
+description = "ML pipeline (data ingestion, preprocessing, feature engineering)"
+requires-python = ">=3.13"
+
+[tool.black]
+line-length = 120
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: isort, UP: pyupgrade, B: flake8-bugbear
+select = ["E", "F", "W", "I", "UP", "B"]
+# Black owns line wrapping; let it handle line length.
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+# Third-party libraries that ship no type stubs.
+[[tool.mypy.overrides]]
+module = ["sklearn.*", "nltk.*"]
+ignore_missing_imports = true

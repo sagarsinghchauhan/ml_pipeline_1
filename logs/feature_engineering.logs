@@ -1,0 +1,7 @@
+2026-06-23 11:39:44,483 - feature-engineering - DEBUG - unexpected error occured while loading the data [Errno 2] No such file or directory: '.data/interim/test_preprocessed.csv'
+2026-06-23 11:39:44,483 - feature-engineering - DEBUG - Failed to complete the feature enginnering process: [Errno 2] No such file or directory: '.data/interim/test_preprocessed.csv'
+2026-06-23 11:53:29,190 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/test_preprocessed.csv
+2026-06-23 11:53:29,207 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/train_preprocessed.csv
+2026-06-23 11:53:29,275 - feature-engineering - DEBUG - bag of words applied and data tranformed
+2026-06-23 11:53:29,389 - feature-engineering - DEBUG - data saved to ./data\processed\train_tfidf.csv
+2026-06-23 11:53:29,420 - feature-engineering - DEBUG - data saved to ./data\processed\test_tfidf.csv
