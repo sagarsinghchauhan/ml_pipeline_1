@@ -6,7 +6,8 @@ import pickle as pkl
 import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
-
+import yaml
+from  dvclive import Live 
 # Ensure the logs dictory exits
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
@@ -29,6 +30,22 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+def load_params(parmas_file_path:str)->dict:
+    """load the params.yaml file."""
+    try:
+        with open (parmas_file_path,'rb') as file:
+            params = yaml.safe_load(file)
+            logger.debug(f"params loaded :{parmas_file_path}")
+            return params
+    except FileNotFoundError as e:
+        logger.error(f"File Doesn't found:{e}")
+        raise
+    except yaml.YAMLError as e:
+        logger.error(f"YAML error :{e}")
+        raise
+    except Exception as e:
+        logger.error(f"Unexpected error while loading params :{e}")
+        raise
 
 def load_model(file_path: str):
     """Load the tranied model from a file."""
@@ -96,13 +113,22 @@ def save_metrics(metrics: dict, file_path: str) -> None:
 
 def main():
     try:
+        params = load_params(parmas_file_path='params.yaml')
+
         clf = load_model("./models/model.pkl")
         test_data = load_data("./data/processed/test_tfidf.csv")
 
         x_test = test_data.iloc[:, :-1].values
         y_test = test_data.iloc[:, -1].values
-
         metrics = evaluation_model(clf, x_test, y_test)
+        
+        # Experince tracking using dvclive
+        with Live(save_dvc_exp = True) as live:
+            live.log_metric('accuracy',accuracy_score(y_test,y_test))
+            live.log_metric('precision',precision_score(y_test,y_test))
+            live.log_metric('recall',recall_score(y_test,y_test))
+
+            live.log_params(params)
 
         save_metrics(metrics, "reports/metrics.json")
 
