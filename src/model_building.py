@@ -1,7 +1,7 @@
 import logging
 import os
 import pickle as pkl
-
+import yaml
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
@@ -10,13 +10,13 @@ log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
 # logging configuration
-logger = logging.getLogger("model_training")
+logger = logging.getLogger("model_building")
 logger.setLevel("DEBUG")
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel("DEBUG")
 
-file_path = os.path.join(log_dir, "model_training.log")
+file_path = os.path.join(log_dir, "model_building.log")
 file_handler = logging.FileHandler(file_path)
 file_handler.setLevel("DEBUG")
 
@@ -26,6 +26,25 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
+
+
+def load_params(params_file_path :str)->dict:
+    """Load the params from params.yaml file."""
+    try:
+        with open(params_file_path,'rb') as file:
+            params = yaml.safe_load(file)
+        logger.debug(f"loaded the params from :{params_file_path}")
+        return params
+    except FileNotFoundError as e:
+        logger.error(f"File Doesn't found:{e}")
+        raise
+    except yaml.YAMLError as e:
+        logger.error(f"YAML error :{e}")
+        raise
+    except Exception as e:
+        logger.error(f"Unexpected error while loading params :{e}")
+        raise
+
 
 
 def load_data(file_path: str) -> pd.DataFrame:
@@ -71,7 +90,9 @@ def save_model(model: RandomForestClassifier, file_path: str) -> None:
 
 def main():
     try:
-        n_estimators = 50
+        params = load_params(params_file_path= 'params.yaml')
+        n_estimators = params['model_building']['n_estimators']
+        # n_estimators = 50
         train_data = load_data("./data/processed/train_tfidf.csv")
         clf = train_model(train_data, n_estimators)
         save_model(clf, os.path.join("./models", "model.pkl"))

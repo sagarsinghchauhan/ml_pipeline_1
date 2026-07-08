@@ -10,3 +10,23 @@
 2026-07-06 21:01:41,481 - feature-engineering - DEBUG - tfidf applied and data tranformed
 2026-07-06 21:01:41,634 - feature-engineering - DEBUG - data saved to ./data\processed\train_tfidf.csv
 2026-07-06 21:01:41,678 - feature-engineering - DEBUG - data saved to ./data\processed\test_tfidf.csv
+2026-07-08 20:24:48,216 - feature-engineering - DEBUG - Params loaded from :params.yaml
+2026-07-08 20:24:48,217 - feature-engineering - DEBUG - Failed to complete the feature enginnering process: 'max_feature'
+2026-07-08 20:25:53,245 - feature-engineering - DEBUG - Params loaded from :params.yaml
+2026-07-08 20:25:53,283 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/test_preprocessed.csv
+2026-07-08 20:25:53,307 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/train_preprocessed.csv
+2026-07-08 20:25:53,384 - feature-engineering - DEBUG - tfidf applied and data tranformed
+2026-07-08 20:25:53,522 - feature-engineering - DEBUG - data saved to ./data\processed\train_tfidf.csv
+2026-07-08 20:25:53,564 - feature-engineering - DEBUG - data saved to ./data\processed\test_tfidf.csv
+2026-07-08 20:51:52,543 - feature-engineering - DEBUG - Params loaded from :params.yaml
+2026-07-08 20:51:52,549 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/test_preprocessed.csv
+2026-07-08 20:51:52,558 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/train_preprocessed.csv
+2026-07-08 20:51:52,615 - feature-engineering - DEBUG - tfidf applied and data tranformed
+2026-07-08 20:51:52,745 - feature-engineering - DEBUG - data saved to ./data\processed\train_tfidf.csv
+2026-07-08 20:51:52,775 - feature-engineering - DEBUG - data saved to ./data\processed\test_tfidf.csv
+2026-07-08 20:56:27,249 - feature-engineering - DEBUG - Params loaded from :params.yaml
+2026-07-08 20:56:27,255 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/test_preprocessed.csv
+2026-07-08 20:56:27,265 - feature-engineering - DEBUG - data loaded and nans filled from ./data/interim/train_preprocessed.csv
+2026-07-08 20:56:27,341 - feature-engineering - DEBUG - tfidf applied and data tranformed
+2026-07-08 20:56:27,474 - feature-engineering - DEBUG - data saved to ./data\processed\train_tfidf.csv
+2026-07-08 20:56:27,499 - feature-engineering - DEBUG - data saved to ./data\processed\test_tfidf.csv
